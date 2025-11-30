@@ -23,7 +23,7 @@ class BookController extends Controller
         $validatedData=$request->validate([
             'title'=>'required|string|max:255',
             'author'=>'required|string|max:255',
-            'publication_year'=>'required|date'
+            'publication_year'=>'required|date|digits:4'
         ]);
         Book::create($validatedData);
         return response()->json([
@@ -32,7 +32,7 @@ class BookController extends Controller
         ]);
     }
 
-    // it work with raw json but not with form data i am still working to find why is that happening 
+    // it work with raw json but not with form data i am still working to find why is that happening
     public function update(Request $request,$book){
         $book=Book::findOrFail($book);
 
